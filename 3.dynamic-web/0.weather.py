@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import csv
 
 
 driver = webdriver.Chrome()
@@ -22,9 +23,15 @@ for i in range(7):
 
     weekly_weather.append([date, low, high])
 
-print(weekly_weather)
     
+local_file_path = '/home/ubuntu/damf2/data/weather'
 
+def save_to_csv(weekly_weather):
+    with open(local_file_path + 'weekly_weather.csv', 'w', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerows(weekly_weather)
+save_to_csv(weekly_weather)
+        
 
 
 
